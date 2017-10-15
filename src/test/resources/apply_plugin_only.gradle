@@ -1,0 +1,4 @@
+plugins {
+    id 'io.fuchs.gradle.classpath-collision-detector'
+    id 'java'
+}

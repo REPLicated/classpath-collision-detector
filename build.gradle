@@ -1,0 +1,22 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.1.4-3'
+    id 'maven-publish'
+    id 'java-gradle-plugin'
+    id 'com.gradle.plugin-publish' version '0.9.8'
+}
+
+dependencies {
+    compileOnly gradleApi()
+    compile 'org.jetbrains.kotlin:kotlin-stdlib:1.1.4-3'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.assertj:assertj-core:3.6.2'
+}
+
+repositories {
+    jcenter()
+    mavenLocal()
+}
+
+
+group 'io.fuchs.gradle.classpath-collision-detector'
+version '0.1'

@@ -1,0 +1,23 @@
+plugins {
+    id 'io.fuchs.gradle.classpath-collision-detector'
+    id 'java'
+}
+
+dependencies {
+    // classic "offender": old versions of junit used to include some hamcrest packages
+    testCompile 'junit:junit:4.4'
+    testCompile 'org.hamcrest:hamcrest-core:1.2'
+}
+
+repositories {
+    mavenCentral()
+}
+
+detectCollisions {
+    configurations = [project.configurations.testCompile]
+
+    collisionFilter.exclude 'org/hamcrest/**'
+    collisionFilter.exclude 'LICENSE.txt'
+    collisionFilter.exclude 'META-INF/MANIFEST.MF'
+
+}

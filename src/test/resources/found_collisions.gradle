@@ -1,0 +1,19 @@
+plugins {
+    id 'io.fuchs.gradle.classpath-collision-detector'
+    id 'java'
+}
+
+dependencies {
+    // classic "offender": old versions of junit used to include some hamcrest packages
+    testCompile 'junit:junit:4.4'
+    testCompile 'org.hamcrest:hamcrest-core:1.2'
+}
+
+repositories {
+    // TODO: Do not depend on external artifacts but assemble them in testcases
+    mavenCentral()
+}
+
+detectCollisions {
+    configurations = [project.configurations.testCompile]
+}
