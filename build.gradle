@@ -17,6 +17,19 @@ repositories {
     mavenLocal()
 }
 
-
 group 'io.fuchs.gradle.classpath-collision-detector'
 version '0.1'
+
+pluginBundle {
+    website = 'https://github.com/REPLicated/classpath-collision-detector'
+    vcsUrl = 'https://github.com/REPLicated/classpath-collision-detector'
+    description = 'A Gradle plugin to detect potential classpath collisions between library jars.'
+    tags = ['classpath', 'collision', 'duplicate', 'detector']
+
+    plugins {
+        classpathCollisionDetectorPlugin {
+            id = 'io.fuchs.gradle.classpath-collision-detector'
+            displayName = 'Classpath Collision Detector Plugin'
+        }
+    }
+}
