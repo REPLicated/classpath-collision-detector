@@ -1,5 +1,6 @@
 package io.fuchs.gradle.collisiondetector
 
+import groovy.lang.Closure
 import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException
 import org.gradle.api.artifacts.Configuration
@@ -19,6 +20,11 @@ open class DetectCollisionsTask : DefaultTask() {
 
     @get:Internal
     val collisionFilter: PatternFilterable = PatternSet()
+
+    fun collisionFilter(filterConfig: Closure<Any>) {
+        filterConfig.delegate = collisionFilter
+        filterConfig.call()
+    }
 
     @TaskAction
     fun detectCollisions() {

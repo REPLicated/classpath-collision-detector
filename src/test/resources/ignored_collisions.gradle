@@ -16,8 +16,10 @@ repositories {
 detectCollisions {
     configurations = [project.configurations.testCompile]
 
-    collisionFilter.exclude 'org/hamcrest/**'
-    collisionFilter.exclude 'LICENSE.txt'
-    collisionFilter.exclude 'META-INF/MANIFEST.MF'
+    collisionFilter {
+        exclude 'org/hamcrest/**'
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/MANIFEST.MF'
+    }
 
 }
