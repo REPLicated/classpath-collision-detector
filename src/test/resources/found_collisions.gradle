@@ -5,8 +5,8 @@ plugins {
 
 dependencies {
     // classic "offender": old versions of junit used to include some hamcrest packages
-    testCompile 'junit:junit:4.4'
-    testCompile 'org.hamcrest:hamcrest-core:1.2'
+    testImplementation 'junit:junit:4.4'
+    testImplementation 'org.hamcrest:hamcrest-core:1.2'
 }
 
 repositories {
@@ -15,5 +15,5 @@ repositories {
 }
 
 detectCollisions {
-    configurations = [project.configurations.testCompile]
+    configurations = [project.configurations.testRuntimeClasspath]
 }
