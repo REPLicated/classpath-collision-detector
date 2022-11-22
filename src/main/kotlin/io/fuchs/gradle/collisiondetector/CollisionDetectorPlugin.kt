@@ -5,17 +5,18 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.util.GradleVersion
 
-open class CollisionDetectorPlugin : Plugin<Project> {
+abstract class CollisionDetectorPlugin : Plugin<Project> {
 
-    val taskName: String = "detectCollisions"
+    private val taskName: String = "detectCollisions"
 
     override fun apply(project: Project) {
-        if (GradleVersion.current() < GradleVersion.version("4.0")) {
-            throw GradleException("This plugin only supports Gradle 4.0 or newer versions")
+        if (GradleVersion.current() < GradleVersion.version("6.6")) {
+            throw GradleException("This plugin only supports Gradle 6.6 or newer versions")
         }
 
-        project.pluginManager.withPlugin("java") {
-            project.tasks.create(taskName, DetectCollisionsTask::class.java)
+        project.tasks.register(taskName, DetectCollisionsTask::class.java) {
+            // convention useful for most Jars, can be replaced completely using 'setExcludes()'
+            it.collisionFilter.exclude("META-INF/**", "module-info.class")
         }
     }
 
