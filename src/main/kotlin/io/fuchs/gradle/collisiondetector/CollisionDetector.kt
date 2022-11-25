@@ -20,7 +20,7 @@ class CollisionDetector(private val classpathArtifacts: List<ClasspathArtifact>)
                 val elementPath = contentElement.path
                 val artifactsWithFile = entryToArtifacts.getOrPut(elementPath) { mutableListOf() }
                 artifactsWithFile.add(artifact)
-                entryToArtifacts.put(elementPath, artifactsWithFile)
+                entryToArtifacts[elementPath] = artifactsWithFile
             }
         }
     }

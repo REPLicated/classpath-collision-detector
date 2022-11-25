@@ -14,7 +14,7 @@ repositories {
 }
 
 detectCollisions {
-    configurations = [project.configurations.testRuntimeClasspath]
+    configurations.from(project.configurations.testRuntimeClasspath)
 
     collisionFilter {
         exclude 'org/hamcrest/**'

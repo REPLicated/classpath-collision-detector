@@ -5,17 +5,32 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.util.GradleVersion
 
-open class CollisionDetectorPlugin : Plugin<Project> {
+import org.gradle.api.plugins.JavaPlugin.RUNTIME_CLASSPATH_CONFIGURATION_NAME
+import org.gradle.language.base.plugins.LifecycleBasePlugin.VERIFICATION_GROUP
 
-    val taskName: String = "detectCollisions"
+abstract class CollisionDetectorPlugin : Plugin<Project> {
+
+    private val taskName: String = "detectCollisions"
 
     override fun apply(project: Project) {
-        if (GradleVersion.current() < GradleVersion.version("4.0")) {
-            throw GradleException("This plugin only supports Gradle 4.0 or newer versions")
+        if (GradleVersion.current() < GradleVersion.version("6.6")) {
+            throw GradleException("This plugin only supports Gradle 6.6 or newer versions")
+        }
+
+        val task = project.tasks.register(taskName, DetectCollisionsTask::class.java) {
+            it.description = "Detect potential classpath collisions between library jars."
+            it.group = VERIFICATION_GROUP
+            // convention useful for most Jars, can be replaced completely using 'setExcludes()'
+            it.collisionFilter.exclude("META-INF/**", "module-info.class")
         }
 
         project.pluginManager.withPlugin("java") {
-            project.tasks.create(taskName, DetectCollisionsTask::class.java)
+            val runtimeClasspath = project.configurations.getByName(RUNTIME_CLASSPATH_CONFIGURATION_NAME)
+            task.configure {
+                // for standard Java projects: by default, analyze the runtime classpath
+                // can be replaced completely using 'setFrom'
+                it.configurations.from(runtimeClasspath)
+            }
         }
     }
 

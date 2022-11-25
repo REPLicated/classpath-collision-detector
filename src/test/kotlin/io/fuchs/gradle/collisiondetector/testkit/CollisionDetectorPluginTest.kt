@@ -25,6 +25,30 @@ class CollisionDetectorPluginTest {
     }
 
     @Test
+    fun `plugin applies without error on minimal supported Gradle version`() {
+        copyBuildFileToTempDir("apply_plugin_only.gradle")
+
+        GradleRunner.create()
+                .withProjectDir(temporaryFolder.root)
+                .withTestKitDir(temporaryFolder.newFolder())
+                .withPluginClasspath()
+                .withGradleVersion("6.6.1")
+                .build()
+    }
+
+    @Test
+    fun `task is compatible with configuration cache`() {
+        copyBuildFileToTempDir("apply_plugin_only.gradle")
+
+        GradleRunner.create()
+                .withProjectDir(temporaryFolder.root)
+                .withTestKitDir(temporaryFolder.newFolder())
+                .withPluginClasspath()
+                .withArguments(":detectCollisions", "--configuration-cache")
+                .build()
+    }
+
+    @Test
     fun `task detects no collision`() {
         copyBuildFileToTempDir("apply_plugin_only.gradle")
 
@@ -69,7 +93,7 @@ class CollisionDetectorPluginTest {
         assertEquals(TaskOutcome.SUCCESS, detectCollisionsTask?.outcome)
     }
 
-    fun copyBuildFileToTempDir(buildFile: String) {
+    private fun copyBuildFileToTempDir(buildFile: String) {
         val file = temporaryFolder.newFile("build.gradle")
         ClassLoader.getSystemResourceAsStream(buildFile).use { inputStream ->
             file.outputStream().use { inputStream.copyTo(it) }
