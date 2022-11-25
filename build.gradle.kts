@@ -3,6 +3,14 @@ plugins {
     id("com.gradle.plugin-publish") version "1.0.0"
 }
 
+val javaVersion = JavaVersion.toVersion(
+        providers.fileContents(layout.projectDirectory.file(".java-version")).asText.get())
+
+java {
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
+}
+
 dependencies {
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.assertj:assertj-core:3.23.1")
