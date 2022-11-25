@@ -6,6 +6,7 @@ import org.gradle.api.Project
 import org.gradle.util.GradleVersion
 
 import org.gradle.api.plugins.JavaPlugin.RUNTIME_CLASSPATH_CONFIGURATION_NAME
+import org.gradle.language.base.plugins.LifecycleBasePlugin.VERIFICATION_GROUP
 
 abstract class CollisionDetectorPlugin : Plugin<Project> {
 
@@ -17,6 +18,8 @@ abstract class CollisionDetectorPlugin : Plugin<Project> {
         }
 
         val task = project.tasks.register(taskName, DetectCollisionsTask::class.java) {
+            it.description = "Detect potential classpath collisions between library jars."
+            it.group = VERIFICATION_GROUP
             // convention useful for most Jars, can be replaced completely using 'setExcludes()'
             it.collisionFilter.exclude("META-INF/**", "module-info.class")
         }
