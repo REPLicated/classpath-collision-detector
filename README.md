@@ -1,4 +1,4 @@
-![Gradle Plugin Portal](https://img.shields.io/gradle-plugin-portal/v/io.fuchs.gradle.classpath-collision-detector)
+[![Download](https://img.shields.io/gradle-plugin-portal/v/io.fuchs.gradle.classpath-collision-detector)](https://plugins.gradle.org/plugin/io.fuchs.gradle.classpath-collision-detector)
 
 # Gradle Classpath Collision Detector
 
