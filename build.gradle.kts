@@ -21,7 +21,7 @@ repositories {
 }
 
 group = "io.fuchs.gradle.classpath-collision-detector"
-version = "0.3"
+version = "1.1"
 
 gradlePlugin {
     plugins.create("classpathCollisionDetectorPlugin") {
