@@ -11,6 +11,10 @@ java {
     targetCompatibility = javaVersion
 }
 
+kotlin {
+    jvmToolchain(javaVersion.majorVersion.toInt())
+}
+
 dependencies {
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.assertj:assertj-core:3.23.1")
@@ -24,16 +28,14 @@ group = "io.fuchs.gradle.classpath-collision-detector"
 version = "0.3"
 
 gradlePlugin {
+    website = "https://github.com/REPLicated/classpath-collision-detector"
+    vcsUrl = "https://github.com/REPLicated/classpath-collision-detector"
+
     plugins.create("classpathCollisionDetectorPlugin") {
         id = "io.fuchs.gradle.classpath-collision-detector"
         implementationClass = "io.fuchs.gradle.collisiondetector.CollisionDetectorPlugin"
         displayName = "Classpath Collision Detector Plugin"
+        description = "A Gradle plugin to detect potential classpath collisions between library jars."
+        tags = listOf("classpath", "collision", "duplicate", "detector")
     }
-}
-
-pluginBundle {
-    website = "https://github.com/REPLicated/classpath-collision-detector"
-    vcsUrl = "https://github.com/REPLicated/classpath-collision-detector"
-    description = "A Gradle plugin to detect potential classpath collisions between library jars."
-    tags = listOf("classpath", "collision", "duplicate", "detector")
 }
