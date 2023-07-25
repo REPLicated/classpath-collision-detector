@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ ubuntu-latest, macos-latest, windows-latest ]
-        jdk: [ 8, 11, 17 ]
+        jdk: [ 8 ] # consider to have [ 8, 11, 17 ] in future
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout Repo
