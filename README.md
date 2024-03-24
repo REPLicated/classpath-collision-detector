@@ -45,7 +45,7 @@ tasks.named('detectCollisions', DetectCollisionsTask).configure {
 }
 ```
 
-To ignore certain conflicts you can add exclude patterns that match collisions you are not interrested in e.g.
+To ignore certain conflicts you can add exclude patterns that match collisions you are not interested in e.g.
 
 ```groovy
 tasks.named('detectCollisions', DetectCollisionsTask).configure {
