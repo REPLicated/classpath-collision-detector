@@ -4,7 +4,7 @@
 
 Experimental Gradle plugin to detect potential classpath collisions between library jars. 
 
-Fails the build whenever an unexpected duplicate entry is found in more than one artifact.
+Fails the build whenever an unexpected duplicate entry is found in two or more artifacts.
 
 ## Usage
 
@@ -34,7 +34,7 @@ apply plugin: "io.fuchs.gradle.classpath-collision-detector"
 
 Then run `./gradlew detectCollisions` to run the detection.
 
-If the projet also applies the `java` plugin the task searches the `runtimeClasspath` for collisions.
+If the project also applies the `java` plugin the task searches the `runtimeClasspath` for collisions.
 
 ### Customization
 
@@ -45,7 +45,7 @@ tasks.named('detectCollisions', DetectCollisionsTask).configure {
 }
 ```
 
-To ignore certain conflicts you can add exclude patterns that match collisions you are not interrested in e.g.
+To ignore certain conflicts you can add exclude patterns that match collisions you are not interested in e.g.
 
 ```groovy
 tasks.named('detectCollisions', DetectCollisionsTask).configure {
