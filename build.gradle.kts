@@ -1,6 +1,6 @@
 plugins {
     `embedded-kotlin`
-    id("com.gradle.plugin-publish") version "1.2.0"
+    id("com.gradle.plugin-publish") version "1.2.1"
 }
 
 val javaVersion = JavaVersion.toVersion(
@@ -24,16 +24,16 @@ group = "io.fuchs.gradle.classpath-collision-detector"
 version = "0.3"
 
 gradlePlugin {
-    plugins.create("classpathCollisionDetectorPlugin") {
-        id = "io.fuchs.gradle.classpath-collision-detector"
-        implementationClass = "io.fuchs.gradle.collisiondetector.CollisionDetectorPlugin"
-        displayName = "Classpath Collision Detector Plugin"
-    }
-}
-
-pluginBundle {
     website = "https://github.com/REPLicated/classpath-collision-detector"
     vcsUrl = "https://github.com/REPLicated/classpath-collision-detector"
-    description = "A Gradle plugin to detect potential classpath collisions between library jars."
-    tags = listOf("classpath", "collision", "duplicate", "detector")
+
+    plugins {
+        create("classpathCollisionDetectorPlugin") {
+            id = "io.fuchs.gradle.classpath-collision-detector"
+            implementationClass = "io.fuchs.gradle.collisiondetector.CollisionDetectorPlugin"
+            displayName = "Classpath Collision Detector Plugin"
+            description = "A Gradle plugin to detect potential classpath collisions between library jars."
+            tags = listOf("classpath", "collision", "duplicate", "detector")
+        }
+    }
 }
