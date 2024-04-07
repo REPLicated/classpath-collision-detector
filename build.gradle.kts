@@ -20,6 +20,11 @@ repositories {
     mavenCentral()
 }
 
+tasks.withType<AbstractArchiveTask>().configureEach {
+    isPreserveFileTimestamps = false
+    isReproducibleFileOrder = true
+}
+
 group = "io.fuchs.gradle.classpath-collision-detector"
 version = "0.3"
 
