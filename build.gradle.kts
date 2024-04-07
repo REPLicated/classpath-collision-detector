@@ -1,6 +1,6 @@
 plugins {
     `embedded-kotlin`
-    id("com.gradle.plugin-publish") version "1.2.1"
+    alias(libs.plugins.pluginPublish)
 }
 
 val javaVersion = JavaVersion.toVersion(
@@ -12,8 +12,8 @@ java {
 }
 
 dependencies {
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("org.assertj:assertj-core:3.23.1")
+    testImplementation(libs.junit)
+    testImplementation(libs.assertj.core)
 }
 
 repositories {

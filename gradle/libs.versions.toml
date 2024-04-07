@@ -1,0 +1,11 @@
+[versions]
+junit = "4.13.2"
+assertj = "3.23.1"
+plugin-publish = "1.2.1"
+
+[libraries]
+junit = { module = "junit:junit", version.ref = "junit" }
+assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+
+[plugins]
+pluginPublish = { id = "com.gradle.plugin-publish", version.ref = "plugin-publish" }
