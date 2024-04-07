@@ -18,10 +18,10 @@ abstract class CollisionDetectorPlugin : Plugin<Project> {
         }
 
         val task = project.tasks.register(taskName, DetectCollisionsTask::class.java) {
-            it.description = "Detect potential classpath collisions between library jars."
-            it.group = VERIFICATION_GROUP
+            description = "Detect potential classpath collisions between library jars."
+            group = VERIFICATION_GROUP
             // convention useful for most Jars, can be replaced completely using 'setExcludes()'
-            it.collisionFilter.exclude("META-INF/**", "module-info.class")
+            collisionFilter.exclude("META-INF/**", "module-info.class")
         }
 
         project.pluginManager.withPlugin("java") {
@@ -29,7 +29,7 @@ abstract class CollisionDetectorPlugin : Plugin<Project> {
             task.configure {
                 // for standard Java projects: by default, analyze the runtime classpath
                 // can be replaced completely using 'setFrom'
-                it.configurations.from(runtimeClasspath)
+                configurations.from(runtimeClasspath)
             }
         }
     }

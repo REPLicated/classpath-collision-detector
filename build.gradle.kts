@@ -1,5 +1,5 @@
 plugins {
-    `embedded-kotlin`
+    `kotlin-dsl`
     alias(libs.plugins.pluginPublish)
 }
 
@@ -25,8 +25,6 @@ tasks.withType<AbstractArchiveTask>().configureEach {
     isPreserveFileTimestamps = false
     isReproducibleFileOrder = true
 }
-
-
 
 tasks.named<Test>("test") {
     useJUnitPlatform()

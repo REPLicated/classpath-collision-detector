@@ -15,9 +15,9 @@ class CollisionDetector(private val classpathArtifacts: List<ClasspathArtifact>)
     }
 
     private fun scanArtifactContents(artifact: ClasspathArtifact) {
-        artifact.artifactContents.visit { contentElement ->
-            if (!contentElement.isDirectory) {
-                val elementPath = contentElement.path
+        artifact.artifactContents.visit {
+            if (!isDirectory) {
+                val elementPath = path
                 val artifactsWithFile = entryToArtifacts.getOrPut(elementPath) { mutableListOf() }
                 artifactsWithFile.add(artifact)
                 entryToArtifacts[elementPath] = artifactsWithFile
