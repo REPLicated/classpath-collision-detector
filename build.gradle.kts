@@ -12,8 +12,9 @@ java {
 }
 
 dependencies {
-    testImplementation(libs.junit)
+    testImplementation(libs.junit.jupiter)
     testImplementation(libs.assertj.core)
+    testRuntimeOnly(libs.junit.platform.launcher)
 }
 
 repositories {
@@ -23,6 +24,12 @@ repositories {
 tasks.withType<AbstractArchiveTask>().configureEach {
     isPreserveFileTimestamps = false
     isReproducibleFileOrder = true
+}
+
+
+
+tasks.named<Test>("test") {
+    useJUnitPlatform()
 }
 
 group = "io.fuchs.gradle.classpath-collision-detector"
