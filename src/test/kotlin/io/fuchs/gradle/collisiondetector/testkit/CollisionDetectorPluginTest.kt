@@ -55,6 +55,26 @@ class CollisionDetectorPluginTest {
         assertEquals(TaskOutcome.SUCCESS, detectCollisionsTask?.outcome)
     }
 
+    fun `task is up-to-date in second execution`(@TempDir tempDir: Path) {
+        copyBuildFileToTempDir("apply_plugin_only.gradle", tempDir)
+
+        val buildResult1 = GradleRunner.create()
+            .withProjectDir(tempDir.toFile())
+            .withPluginClasspath()
+            .withArguments(":detectCollisions")
+            .build()
+        val buildResult2 = GradleRunner.create()
+            .withProjectDir(tempDir.toFile())
+            .withPluginClasspath()
+            .withArguments(":detectCollisions")
+            .build()
+
+        val detectCollisionsTask1 = buildResult1.task(":detectCollisions")
+        assertEquals(TaskOutcome.SUCCESS, detectCollisionsTask1?.outcome)
+        val detectCollisionsTask2 = buildResult2.task(":detectCollisions")
+        assertEquals(TaskOutcome.UP_TO_DATE, detectCollisionsTask2?.outcome)
+    }
+
     @Test
     fun `detects collisions and fails`(@TempDir tempDir: Path) {
         copyBuildFileToTempDir("found_collisions.gradle", tempDir)
