@@ -18,3 +18,8 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
       - name: Build with Gradle
         run: ./gradlew build
+      - name: Archive dependency verification report
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependency-verification-report
+          path: build/reports/dependency-verification
