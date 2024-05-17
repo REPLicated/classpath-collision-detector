@@ -31,7 +31,7 @@ tasks.named<Test>("test") {
 }
 
 group = "io.fuchs.gradle.classpath-collision-detector"
-version = "0.3"
+version = "1.0.0"
 
 gradlePlugin {
     website = "https://github.com/REPLicated/classpath-collision-detector"

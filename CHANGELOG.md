@@ -7,6 +7,8 @@ This project does NOT use semantic versioning.
 
 ## [Unreleased]
 
+## 1.0.0
+
 ### Added
 
 - [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
