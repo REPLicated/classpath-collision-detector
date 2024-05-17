@@ -19,3 +19,4 @@ This project does NOT use semantic versioning.
 - Make JAR of plugin reproducible
 - Upgrade plugin testing dependencies and use Gradle 8.7
 - Use a version catalog and dependency verification for all plugin dependencies.
+- Add Github Actions workflow
