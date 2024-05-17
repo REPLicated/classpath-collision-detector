@@ -55,6 +55,7 @@ class CollisionDetectorPluginTest {
         assertEquals(TaskOutcome.SUCCESS, detectCollisionsTask?.outcome)
     }
 
+    @Test
     fun `task is up-to-date in second execution`(@TempDir tempDir: Path) {
         copyBuildFileToTempDir("apply_plugin_only.gradle", tempDir)
 
