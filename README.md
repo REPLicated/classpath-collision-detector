@@ -1,8 +1,9 @@
+![Build Status](https://github.com/REPLicated/classpath-collision-detector/actions/workflows/build.yml/badge.svg)
 [![Download](https://img.shields.io/gradle-plugin-portal/v/io.fuchs.gradle.classpath-collision-detector)](https://plugins.gradle.org/plugin/io.fuchs.gradle.classpath-collision-detector)
 
 # Gradle Classpath Collision Detector
 
-Experimental Gradle plugin to detect potential classpath collisions between library jars. 
+Gradle plugin to detect potential classpath collisions between library jars. 
 
 Fails the build whenever an unexpected duplicate entry is found in two or more artifacts.
 
