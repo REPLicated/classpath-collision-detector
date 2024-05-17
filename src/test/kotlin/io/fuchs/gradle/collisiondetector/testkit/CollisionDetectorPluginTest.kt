@@ -106,6 +106,7 @@ class CollisionDetectorPluginTest {
     private fun copyBuildFileToTempDir(buildFile: String, tempDir: Path) {
         val file = tempDir.resolve("build.gradle").toFile()
         ClassLoader.getSystemResourceAsStream(buildFile).use { inputStream ->
+            requireNotNull(inputStream) { "Gradle build file $buildFile not found" }
             file.outputStream().use { inputStream.copyTo(it) }
         }
     }
