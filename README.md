@@ -24,7 +24,7 @@ If the project also applies the `java` plugin the task searches the `runtimeClas
 ### Customization
 
 You can also explicitly specify the configuration
-```
+```kotlin
 tasks.named<DetectCollisionsTask>("detectCollisions").configure {
     configurations.from(project.configurations.runtimeClasspath)
 }
