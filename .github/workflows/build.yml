@@ -22,5 +22,13 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: dependency-verification-report
-          path: build/reports/
+          name: Dependency Verification Report
+          path: build/reports/dependency-verification
+      - name: Report unit test results
+        uses: dorny/test-reporter@v1.9.1
+        if: always()
+        with:
+          name: JUnit Tests
+          path: build/reports/tests/**
+          reporter: java-junit
+          fail-on-error: true
